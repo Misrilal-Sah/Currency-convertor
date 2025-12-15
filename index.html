@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert currencies instantly with live exchange rates. Support for 150+ currencies with real-time updates.">
+    <meta name="keywords" content="currency converter, exchange rates, forex, money converter">
+    <title>Currency Converter | Live Exchange Rates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+        <div class="bg-circle bg-circle-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">💱</span>
+                <h1>CurrencyX</h1>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon sun">☀️</span>
+                <span class="theme-icon moon">🌙</span>
+            </button>
+        </header>
+
+        <!-- Main Converter Card -->
+        <main class="converter-card">
+            <div class="card-header">
+                <h2>Currency Converter</h2>
+                <p class="subtitle">Real-time exchange rates for 150+ currencies</p>
+            </div>
+
+            <!-- Amount Input -->
+            <div class="input-group">
+                <label for="amount">Amount</label>
+                <div class="amount-input-wrapper">
+                    <span class="currency-symbol" id="currencySymbol">₹</span>
+                    <input 
+                        type="number" 
+                        id="amount" 
+                        class="amount-input" 
+                        placeholder="Enter amount" 
+                        value="1"
+                        min="0"
+                        step="any"
+                        autocomplete="off"
+                    >
+                    <button class="clear-btn" id="clearAmount" aria-label="Clear amount">×</button>
+                </div>
+            </div>
+
+            <!-- Currency Selection -->
+            <div class="currency-selection">
+                <!-- From Currency -->
+                <div class="currency-group">
+                    <label for="fromCurrency">From</label>
+                    <div class="select-wrapper">
+                        <span class="flag-emoji" id="fromFlag">🇮🇳</span>
+                        <select id="fromCurrency" class="currency-select">
+                            <option value="INR">INR - Indian Rupee</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                </div>
+
+                <!-- Swap Button -->
+                <button class="swap-btn" id="swapCurrencies" aria-label="Swap currencies">
+                    <span class="swap-icon">⇄</span>
+                </button>
+
+                <!-- To Currency -->
+                <div class="currency-group">
+                    <label for="toCurrency">To</label>
+                    <div class="select-wrapper">
+                        <span class="flag-emoji" id="toFlag">🇺🇸</span>
+                        <select id="toCurrency" class="currency-select">
+                            <option value="USD">USD - US Dollar</option>
+                        </select>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Convert Button -->
+            <button class="convert-btn" id="convertBtn">
+                <span class="btn-text">Convert</span>
+                <span class="btn-loader"></span>
+            </button>
+
+            <!-- Result Display -->
+            <div class="result-container" id="resultContainer">
+                <div class="result-main">
+                    <span class="result-amount" id="resultAmount">0.00</span>
+                    <span class="result-currency" id="resultCurrency">EUR</span>
+                </div>
+                <div class="result-details">
+                    <p class="exchange-rate" id="exchangeRate">1 USD = 0.92 EUR</p>
+                    <p class="last-updated" id="lastUpdated">Last updated: --</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="quick-btn" data-amount="100">100</button>
+                <button class="quick-btn" data-amount="500">500</button>
+                <button class="quick-btn" data-amount="1000">1K</button>
+                <button class="quick-btn" data-amount="5000">5K</button>
+                <button class="quick-btn" data-amount="10000">10K</button>
+            </div>
+        </main>
+
+        <!-- Favorites Section -->
+        <section class="favorites-section" id="favoritesSection">
+            <div class="section-header">
+                <h3>⭐ Favorites</h3>
+                <button class="add-favorite-btn" id="addFavoriteBtn">+ Add Current</button>
+            </div>
+            <div class="favorites-list" id="favoritesList">
+                <!-- Favorites will be populated dynamically -->
+                <p class="empty-message" id="emptyFavorites">No favorites yet. Click "Add Current" to save a currency pair.</p>
+            </div>
+        </section>
+
+        <!-- Conversion History -->
+        <section class="history-section" id="historySection">
+            <div class="section-header">
+                <h3>📊 Conversion History</h3>
+                <button class="clear-history-btn" id="clearHistoryBtn">Clear All</button>
+            </div>
+            <div class="history-list" id="historyList">
+                <!-- History will be populated dynamically -->
+                <p class="empty-message" id="emptyHistory">No conversions yet. Start converting to see your history.</p>
+            </div>
+        </section>
+
+        <!-- Popular Currencies Grid -->
+        <section class="popular-section">
+            <h3>🔥 Popular Exchange Rates</h3>
+            <div class="popular-grid" id="popularGrid">
+                <!-- Popular rates will be populated dynamically -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Exchange rates provided by <a href="https://open.er-api.com" target="_blank" rel="noopener">Open Exchange Rates API</a></p>
+            <p class="copyright">© 2022 Currency Converter. Built by Misrilal Sah</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message" id="toastMessage">Success!</span>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <p>Loading exchange rates...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
