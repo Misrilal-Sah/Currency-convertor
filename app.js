@@ -13,6 +13,19 @@ const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 const DEBOUNCE_DELAY = 300;
 const MAX_HISTORY = 15;
 const MAX_FAVORITES = 10;
+const APP_VERSION = '1.3.0'; // Version to track preference resets
+
+// Clear old preferences if version changed (to apply new defaults)
+(function() {
+    const storedVersion = localStorage.getItem('currencyX_version');
+    if (storedVersion !== APP_VERSION) {
+        // Clear currency preferences to apply new defaults (USD → INR)
+        localStorage.removeItem('currencyX_fromCurrency');
+        localStorage.removeItem('currencyX_toCurrency');
+        localStorage.removeItem('currencyX_amount');
+        localStorage.setItem('currencyX_version', APP_VERSION);
+    }
+})();
 
 // Currency data with names and flags
 const CURRENCIES = {
@@ -98,8 +111,8 @@ const state = {
     baseCurrency: 'USD',
     lastFetch: null,
     isLoading: false,
-    fromCurrency: 'INR',
-    toCurrency: 'USD',
+    fromCurrency: 'USD',
+    toCurrency: 'INR',
     amount: 1,
     isDarkMode: false,
     favorites: [],
@@ -267,8 +280,8 @@ const storage = {
     
     loadPreferences() {
         state.isDarkMode = this.get('darkMode', false);
-        state.fromCurrency = this.get('fromCurrency', 'INR');
-        state.toCurrency = this.get('toCurrency', 'USD');
+        state.fromCurrency = this.get('fromCurrency', 'USD');
+        state.toCurrency = this.get('toCurrency', 'INR');
         state.amount = this.get('amount', 1);
         state.favorites = this.get('favorites', []);
         state.history = this.get('history', []);
