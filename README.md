@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=12,14,20,28&height=200&section=header&text=💱%20CurrencyX&fontSize=72&fontAlignY=48&desc=Premium%20Currency%20Converter%20•%20Real-Time%20Exchange%20Rates&descSize=17&descAlignY=73&fontColor=ffffff&stroke=ffffff&strokeWidth=0" alt="CurrencyX"/>
+<img src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=0,2,24,25&height=200&section=header&text=💱%20CurrencyX&fontSize=72&fontAlignY=48&desc=Premium%20Currency%20Converter%20•%20Real-Time%20Exchange%20Rates&descSize=17&descAlignY=73&fontColor=ffffff&stroke=ffffff&strokeWidth=0" alt="CurrencyX"/>
 
 <br/>
 
@@ -334,7 +334,7 @@ Distributed under the **MIT License** — free for personal and commercial use.
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12,14,20,28&height=90&section=footer&text=Made%20with%20❤️%20by%20Misrilal%20Sah&fontSize=22&fontColor=ffffff" alt="Footer"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,24,25&height=90&section=footer&text=Made%20with%20❤️%20by%20Misrilal%20Sah&fontSize=22&fontColor=ffffff" alt="Footer"/>
 
 <br/>
 
